@@ -17,7 +17,11 @@ const Users = () => {
 
     usersCards();
   }, []);
-  // console.log(users);
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const userItem = users.map(({ id, user, followers, tweets, avatar }) => (
     <li key={id} className={style.item}>
       <img className={style.imageLogo} src={logo} alt="logo" />
@@ -29,7 +33,7 @@ const Users = () => {
 
       <img className={style.image} src={avatar} alt={user} />
       <p className={style.tweets}>{tweets} tweets</p>
-      <p className={style.followers}>{followers} followers</p>
+      <p className={style.followers}>{numberWithCommas(followers)} followers</p>
       <button type="button" className={style.button}>
         Follow
       </button>
