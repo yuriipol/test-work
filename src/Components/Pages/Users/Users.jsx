@@ -18,8 +18,8 @@ const Users = () => {
     usersCards();
   }, []);
 
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  function numberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   const userItem = users.map(({ id, user, followers, tweets, avatar }) => (
