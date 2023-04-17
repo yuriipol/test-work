@@ -1,5 +1,6 @@
 import style from "./Users.module.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { getUsersCards } from "../../../Servises/tweetsApi";
 import logo from "../../../images/Logo.png";
 import fonPicture from "../../../images/picture.png";
@@ -12,9 +13,11 @@ const Users = () => {
   );
   // const [isActive, setActive] = useState(false);
   const [findEl, setFindEl] = useState("");
+  const [page, setPage] = useState(1);
   // const [count, setCount] = useState(0);
 
   // console.log(users);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const usersCards = async () => {
@@ -47,6 +50,10 @@ const Users = () => {
     console.log(event.currentTarget);
   }
 
+  const onClickLoadVore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
   const userItem = users.map(({ id, user, followers, tweets, avatar }) => (
     <li key={id} className={style.item}>
       <img className={style.imageLogo} src={logo} alt="logo" />
@@ -73,7 +80,21 @@ const Users = () => {
   ));
   return (
     <>
+      <button
+        type="button"
+        className={style.buttonBack}
+        onClick={() => navigate(-1)} //отличный способ на кнопку ходить назад
+      >
+        Go back
+      </button>
       <ul className={style.userList}>{userItem}</ul>
+      <button
+        type="button"
+        className={style.loadMore}
+        onClick={onClickLoadVore}
+      >
+        Load more
+      </button>
     </>
   );
 };

@@ -117,3 +117,26 @@
 
   color: #373737;
 }
+.buttonBack,
+.loadMore {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #333;
+  background-color: #ebd8ff;
+  border: 1px solid #5736a3;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.buttonBack:hover,
+.loadMore:hover,
+.buttonBack:focus,
+.loadMore:focus {
+  background-color: #5cd3a8;
+  color: #fff;
+  outline: none;
+}
