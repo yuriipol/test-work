@@ -8,6 +8,11 @@ import ellipse from "../../../images/Boy.png";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [isActive, setActive] = useState(false);
+  const [findEl, setFindEl] = useState("");
+  // const [count, setCount] = useState(0);
+
+  // console.log(users);
 
   useEffect(() => {
     const usersCards = async () => {
@@ -19,7 +24,22 @@ const Users = () => {
   }, []);
 
   function numberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const followers = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return followers;
+  }
+  function handleClick(event) {
+    setActive((prevState) => !prevState);
+    // const foo = document.querySelectorAll("button");
+
+    // for (var i = 0; i < foo.length; i++) {
+    //   foo[i].classList.remove("buttonActive");
+    // }
+    // console.log(foo);
+    const findButton = users.find((user) => user.id === event.currentTarget.id);
+    setFindEl(findButton.id);
+
+    // event.currentTarget.classList.add("buttonActive");
+    console.log(event.currentTarget);
   }
 
   const userItem = users.map(({ id, user, followers, tweets, avatar }) => (
@@ -34,8 +54,15 @@ const Users = () => {
       <img className={style.image} src={avatar} alt={user} />
       <p className={style.tweets}>{tweets} tweets</p>
       <p className={style.followers}>{numberWithCommas(followers)} followers</p>
-      <button type="button" className={style.button}>
-        Follow
+      <button
+        type="button"
+        className={id === findEl ? style.buttonActive : style.button}
+        onClick={handleClick}
+        id={id}
+      >
+        <span className={style.buttonText}>
+          {id === findEl ? "Following" : "Follow"}
+        </span>
       </button>
     </li>
   ));
