@@ -1,6 +1,12 @@
+.fon {
+  width: 100%;
+  background: linear-gradient(#fff, blue);
+}
 .buttonBack,
 .loadMore {
-  display: inline-block;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px 20px;
   font-size: 16px;
   color: #333;

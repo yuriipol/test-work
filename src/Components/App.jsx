@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 const Home = lazy(() => import("./Pages/Home/Home"));
-const Users = lazy(() => import("./Pages/Users/Users"));
+const Users = lazy(() => import("./Users/Users"));
 const NotFound = lazy(() => import("./Pages/NotFound/NotFound"));
 
 function App() {

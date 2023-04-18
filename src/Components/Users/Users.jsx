@@ -1,9 +1,9 @@
 import style from "./Users.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUsersCards } from "../../../Servises/tweetsApi";
+import { getUsersCards } from "../../Servises/tweetsApi";
 
-import UserList from "../../UserList/UserList";
+import UserList from "../UserList/UserList";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -17,12 +17,12 @@ const Users = () => {
 
   useEffect(() => {
     const usersCards = async () => {
-      const data = await getUsersCards();
-      setUsers([...data]);
+      const data = await getUsersCards(page);
+      setUsers((prevstate) => [...prevstate, ...data]);
     };
 
     usersCards();
-  }, []);
+  }, [page]);
 
   const findLocalStorageItem = (findButton) => {
     if (!localStorage.getItem("user")) {
@@ -32,7 +32,7 @@ const Users = () => {
     const haveId = findButtonLocalStorage.some(
       (user) => user.id === findButton.id
     );
-    console.log(findButtonLocalStorage);
+
     if (haveId) {
       const newLocal = findButtonLocalStorage.filter(
         (user) => user.id !== findButton.id
@@ -61,7 +61,7 @@ const Users = () => {
   };
 
   return (
-    <>
+    <div className={style.fon}>
       <button
         type="button"
         className={style.buttonBack}
@@ -82,7 +82,7 @@ const Users = () => {
       >
         Load more
       </button>
-    </>
+    </div>
   );
 };
 export default Users;

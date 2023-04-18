@@ -15,7 +15,6 @@ const UserItem = ({
 }) => {
   const { id, user, followers, tweets, avatar } = el;
   const [count, setCount] = useState(followers);
-  console.log(count);
   function handleClick(event) {
     const findButton = users.find((user) => user.id === event.currentTarget.id);
     findLocalStorageItem(findButton);
