@@ -8,50 +8,75 @@ import linePicture from "../../../images/Line.png";
 import ellipse from "../../../images/Boy.png";
 
 const Users = () => {
-  const [users, setUsers] = useState(
-    JSON.parse(localStorage.getItem("users")) ?? []
-  );
+  const [users, setUsers] = useState([]);
   // const [isActive, setActive] = useState(false);
   const [findEl, setFindEl] = useState("");
   const [page, setPage] = useState(1);
-  // const [count, setCount] = useState(0);
 
-  // console.log(users);
+  if (!localStorage.getItem("user")) {
+    localStorage.setItem("user", JSON.stringify([]));
+  }
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const usersCards = async () => {
       const data = await getUsersCards();
       setUsers([...data]);
-      localStorage.setItem("users", JSON.stringify(users));
     };
 
     usersCards();
-  }, [users]);
+  }, []);
 
   function numberWithCommas(number) {
     const followers = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return followers;
   }
+  function findLocalStorage(findButton) {
+    if (!localStorage.getItem("user")) {
+      localStorage.setItem("user", JSON.stringify([]));
+    }
+    const findButtonLocalStorage = JSON.parse(localStorage.getItem("user"));
+    const haveId = findButtonLocalStorage.some(
+      (user) => user.id === findButton.id
+    );
+    console.log(findButtonLocalStorage);
+    if (haveId) {
+      const newLocal = findButtonLocalStorage.filter(
+        (user) => user.id !== findButton.id
+      );
+      localStorage.setItem("user", JSON.stringify(newLocal));
+      // console.log(newLocal);
+    } else {
+      // const addFollowers = findButtonLocalStorage.find((user) => {
+      //   if (user.id === findButton.id) {
+      //     return user.followers++;
+      //   }
+      // });
+      localStorage.setItem(
+        "user",
+        JSON.stringify([...findButtonLocalStorage, findButton])
+      );
+    }
+  }
+
   function handleClick(event) {
-    // setActive((prevState) => !prevState);
-    // const foo = document.querySelectorAll("button");
-
-    // for (var i = 0; i < foo.length; i++) {
-    //   foo[i].classList.remove("buttonActive");
-    // }
-    // console.log(foo);
     const findButton = users.find((user) => user.id === event.currentTarget.id);
-    setFindEl(findButton.id);
-    // setCount(findButton.followers);
-    // setCount((prevState) => prevState + 1);
+    findLocalStorage(findButton);
 
-    // event.currentTarget.classList.add("buttonActive");
-    console.log(event.currentTarget);
+    setFindEl(findButton.id);
+    // console.log("click");
   }
 
   const onClickLoadVore = () => {
     setPage((prevPage) => prevPage + 1);
+  };
+  const isFolow = (findEl) => {
+    const item = JSON.parse(localStorage.getItem("user"));
+    // console.log(item);
+    return JSON.parse(localStorage.getItem("user")).some(
+      (user) => user.id === findEl
+    );
   };
 
   const userItem = users.map(({ id, user, followers, tweets, avatar }) => (
@@ -68,12 +93,12 @@ const Users = () => {
       <p className={style.followers}>{numberWithCommas(followers)} followers</p>
       <button
         type="button"
-        className={id === findEl ? style.buttonActive : style.button}
+        className={isFolow(id) ? style.buttonActive : style.button}
         onClick={handleClick}
         id={id}
       >
         <span className={style.buttonText}>
-          {id === findEl ? "Following" : "Follow"}
+          {isFolow(id) ? "Following" : "Follow"}
         </span>
       </button>
     </li>
