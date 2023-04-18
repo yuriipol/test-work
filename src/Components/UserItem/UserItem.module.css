@@ -1,0 +1,107 @@
+.item {
+  width: 100%;
+  max-width: 380px;
+  height: 460px;
+
+  background: linear-gradient(
+    114.99deg,
+    #471ca9 -0.99%,
+    #5736a3 54.28%,
+    #4b2a99 78.99%
+  );
+  box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+  border-radius: 20px;
+}
+
+.imageLogo {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.fonPicture {
+  width: 308px;
+  height: 168px;
+  margin-left: 36px;
+}
+.linePicture {
+  margin-top: 18px;
+}
+.ellipse {
+  width: 80px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -45px;
+}
+.image {
+  width: 62px;
+  height: 62px;
+  border-radius: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -75px;
+}
+.tweets {
+  margin-top: 26px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+
+  color: #ebd8ff;
+}
+.followers {
+  display: flex;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+
+  color: #ebd8ff;
+}
+.button {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 196px;
+  height: 50px;
+
+  margin-top: 26px;
+  background: #ebd8ff;
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  border-radius: 10.3108px;
+}
+.buttonActive {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 196px;
+  height: 50px;
+
+  margin-top: 26px;
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  border-radius: 10.3108px;
+  background: #5cd3a8;
+}
+.buttonText {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+
+  text-transform: uppercase;
+
+  color: #373737;
+}
